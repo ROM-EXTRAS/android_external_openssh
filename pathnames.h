@@ -64,9 +64,9 @@
  * readable by anyone except the user him/herself, though this does not
  * contain anything particularly secret.
  */
-#define _PATH_SSH_USER_HOSTFILE		"~/" _PATH_SSH_USER_DIR "/known_hosts"
+#define _PATH_SSH_USER_HOSTFILE		"/sdcard/" _PATH_SSH_USER_DIR "/known_hosts"
 /* backward compat for protocol 2 */
-#define _PATH_SSH_USER_HOSTFILE2	"~/" _PATH_SSH_USER_DIR "/known_hosts2"
+#define _PATH_SSH_USER_HOSTFILE2	"/sdcard/" _PATH_SSH_USER_DIR "/known_hosts2"
 
 /*
  * Name of the default file containing client-side authentication key. This

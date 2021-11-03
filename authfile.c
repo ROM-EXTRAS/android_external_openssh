@@ -101,6 +101,8 @@ sshkey_perm_ok(int fd, const char *filename)
 #ifdef HAVE_CYGWIN
 	if (check_ntsec(filename))
 #endif
+
+#if !defined(ANDROID)
 	if ((st.st_uid == getuid()) && (st.st_mode & 077) != 0) {
 		error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		error("@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @");
@@ -111,6 +113,7 @@ sshkey_perm_ok(int fd, const char *filename)
 		error("This private key will be ignored.");
 		return SSH_ERR_KEY_BAD_PERMISSIONS;
 	}
+#endif
 	return 0;
 }
 

@@ -570,8 +570,13 @@ process_config_files(const char *host_name, struct passwd *pw, int final_pass,
 			fatal("Can't open user config file %.100s: "
 			    "%.100s", config, strerror(errno));
 	} else {
+#ifdef __ANDROID__
+		r = snprintf(buf, sizeof buf, "%s/%s", _USER_CONFIG_PATH,
+		    _PATH_SSH_USER_CONFFILE);
+#else
 		r = snprintf(buf, sizeof buf, "%s/%s", pw->pw_dir,
 		    _PATH_SSH_USER_CONFFILE);
+#endif
 		if (r > 0 && (size_t)r < sizeof(buf))
 			(void)read_config_file(buf, pw, host, host_name,
 			    &options, SSHCONF_CHECKPERM | SSHCONF_USERCONF |
